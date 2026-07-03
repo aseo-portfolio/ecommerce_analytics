@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: int_user_order_history
+    description: >
+      Order history per user.
+      Grain is one row per order per user.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+  - name: int_orders_detail
+    description: >
+      Orders with additional detail. Only includes Returned and Completed orders.
+      Grain is one row per order.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+  - name: int_session_conversions
+    description: >
+      Sessions with conversion flag where purchase was made.
+      Grain is one row per session.
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+          - unique
+  - name: int_product_performance
+    description: >
+      Product detail.
+      Grain is one product.
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
