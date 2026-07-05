@@ -89,3 +89,19 @@ models:
         description: Sum of order revenue for a given user.
       - name: cumulative_user_revenue
         description: Cumulative revenue of all orders for a given user.
+
+  - name: int_user_segments
+    description: >
+      Segmentation of users by different parameters.
+      Grain is one row per user.
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: orders_segment
+      - name: revenue_segment
+      - name: session_segment
+      - name: total_orders
+      - name: total_revenue
+      - name: total_sessions
