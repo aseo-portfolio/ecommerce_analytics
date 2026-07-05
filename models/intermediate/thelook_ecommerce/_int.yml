@@ -1,19 +1,6 @@
 version: 2
 
 models:
-  - name: int_user_order_history
-    description: >
-      Order history per user.
-      Grain is one row per order per user.
-    columns:
-      - name: order_id
-        tests:
-          - not_null
-          - unique
-      - name: user_id
-        tests:
-          - not_null
-          - unique
   - name: int_orders_detail
     description: >
       Orders with additional detail. Only includes Returned and Completed orders.
@@ -26,16 +13,20 @@ models:
       - name: user_id
         tests:
           - not_null
-          - unique
-  - name: int_session_conversions
-    description: >
-      Sessions with conversion flag where purchase was made.
-      Grain is one row per session.
-    columns:
-      - name: session_id
+      - name: created_at
+      - name: status
         tests:
-          - not_null
-          - unique
+          - accepted_values:
+              values: ['Cancelled','Complete','Processing','Returned','Shipped']
+      - name: num_of_item
+        description: Number of order items per order
+      - name: days_to_ship
+        description: Number of days from date order was created to shipped. May differ from created dates in order items table.
+      - name: days_to_deliver
+        description: Number of days from date order was created to delivered. May differ from created dates in order items table.
+      - name: order_revenue
+        description: Sum of sales price of all order items per order.
+  
   - name: int_product_performance
     description: >
       Product detail.
@@ -45,3 +36,56 @@ models:
         tests:
           - not_null
           - unique
+      - name: items_returned
+        description: Number of order items returned for a given product.
+      - name: items_sold
+        description: Number of order items sold for a given product
+      - name: return_rate_pct
+        description: Percentage of order items returned out of all sold for a given product.
+      - name: gross_profit
+        description: Difference between revenue and cost all order items sold for a given product (Total Revenue - Total Cost).
+      - name: total_revenue
+        description: Sum of sales price for all order items for a given product.
+
+  - name: int_session_conversions
+    description: >
+      Sessions with conversion flag where purchase was made.
+      Grain is one row per session.
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+      - name: session_start
+      - name: session_end
+      - name: total_events
+        description: Number of events for a given session.
+      - name: session_duration
+        description: Duration of session in seconds.
+      - name: purchase_events
+        description: Number of events where purchase was made for a given session.
+      - name: has_purchased
+        description: Boolean indicating if session resulted in a purchase.
+
+  - name: int_user_order_history
+    description: >
+      Order history per user.
+      Grain is one row per order per user.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        tests:
+          - not_null
+      - name: created_at
+      - name: order_sequence
+        description: Historical sequence number of order for a given user.
+      - name: days_since_prev_order
+        description: Number of days between current order and previous order for a given user.
+      - name: order_revenue
+        description: Sum of order revenue for a given user.
+      - name: cumulative_user_revenue
+        description: Cumulative revenue of all orders for a given user.

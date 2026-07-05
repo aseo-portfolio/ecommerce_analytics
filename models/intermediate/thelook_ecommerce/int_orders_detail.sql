@@ -3,7 +3,7 @@ with orders as (
     select
         order_id,
         user_id,
-        date(created_at) as created_date,
+        created_at,
         status,
         num_of_item,
         date_diff(date(shipped_at), date(created_at), day) as days_to_ship,
@@ -28,7 +28,7 @@ final as (
     select
         o.order_id,
         o.user_id,
-        o.created_date,
+        o.created_at,
         o.status,
 
         -- Measures
@@ -41,5 +41,4 @@ final as (
 
 )
 
-select *
-from final
+select * from final

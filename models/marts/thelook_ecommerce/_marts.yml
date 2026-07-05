@@ -1,0 +1,111 @@
+version: 2
+
+models:
+  - name: dim_dates
+    description: Dim table for dates.
+    columns:
+      - name: date_id
+        description: Surrogate key for table.
+        tests:
+          - not_null
+          - unique
+      - name: day
+      - name: day_of_week
+      - name: day_name
+      - name: week_of_year
+      - name: month_number
+      - name: month_name
+      - name: quarter
+      - name: year
+      - name: is_weekday
+      - name: first_date_of_month
+      - name: last_date_of_month
+      - name: first_day_of_year
+      - name: last_day_of_year
+
+  - name: dim_products
+    description: Grain is one row per product.
+    columns:
+      - name: product_key
+        tests:
+          - not_null
+          - unique
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      - name: product_name
+      - name: brand
+      - name: category
+      - name: department
+      - name: retail_price
+      - name: cost
+      - name: sku
+      - name: distribution_center_id
+      - name: items_returned
+      - name: return_rate_pct
+      - name: items_sold
+      - name: gross_profit
+      - name: total_revenue
+
+  - name: dim_users
+    description: Grain is one row per user.
+    columns:
+      - name: user_key
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: user_name
+      - name: email
+      - name: age
+      - name: gender
+      - name: city
+      - name: state
+      - name: country
+      - name: postal_code
+      - name: traffic_source
+      - name: created_date
+
+  - name: fct_order_items
+    description: Grain is one row per order.
+    columns:
+      - name: order_item_key
+        tests:
+          - not_null
+          - unique
+      - name: order_item_id
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+      - name: user_id
+      - name: product_id
+      - name: inventory_item_id
+      - name: status
+      - name: sale_price
+      - name: created_date
+      - name: shipped_date
+      - name: delivered_date
+
+  - name: fct_orders
+    description: Grain is one row per order.
+    columns:
+      - name: order_key
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+      - name: created_date
+      - name: status
+      - name: num_of_item
+      - name: days_to_ship
+      - name: days_to_deliver
+      - name: order_revenue

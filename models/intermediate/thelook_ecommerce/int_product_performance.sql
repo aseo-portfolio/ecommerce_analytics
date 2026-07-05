@@ -17,9 +17,9 @@ final as (
         
         -- Measures
         countif(oi.status = 'Returned') as items_returned,
-        round(safe_divide(countif(oi.status = 'Returned'),count(oi.order_item_id)),2) as return_rate_pct,
         count(oi.order_item_id) as items_sold,
-        round(sum(sale_price) - sum(p.cost), 2)as gross_profit,
+        round(safe_divide(countif(oi.status = 'Returned'),count(oi.order_item_id)),2) as return_rate_pct,
+        round(sum(sale_price) - sum(p.cost), 2) as gross_profit,
         round(sum(sale_price), 2) as total_revenue
     from products p
     join order_items oi on p.product_id = oi.product_id
