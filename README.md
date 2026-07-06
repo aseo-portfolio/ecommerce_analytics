@@ -5,7 +5,7 @@ An analytics engineering project built on Google's public thelook_ecommerce data
 
 Stack: dbt Core, BigQuery, GitHub
 
-[Placeholder for dbt docs]
+[Placeholder for dbt docs](https://aseo-portfolio.github.io/ecommerce_analytics/#!/overview)
 
 ### Table of Contents
 
