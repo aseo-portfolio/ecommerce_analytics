@@ -1,0 +1,16 @@
+version: 2
+
+seeds:
+  - name: country_regions
+    columns:
+      - name: country
+        tests:
+          - not_null
+          - unique
+      - name: region
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Americas','EMEA','APAC']
+      - name: sub-region
+          - not_null
