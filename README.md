@@ -1,9 +1,10 @@
-ecommerce_analytics
+# ecommerce_analytics
 
 An analytics engineering project built on Google's public thelook_ecommerce dataset.
 [Placeholder for business question]
 
 Stack: dbt Core, BigQuery, GitHub
+
 [Placeholder for dbt docs]
 
 ### Table of Contents
