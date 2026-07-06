@@ -57,6 +57,11 @@ models:
           - not_null
           - unique
       - name: user_id
+        description: Earliest instance of user_id for a given session_id
+      - name: traffic_source
+        description: Earliest instance of traffic_source for a given session_id
+      - name: browser
+        description: Earliest instance of browser for a given session_id
       - name: session_start
       - name: session_end
       - name: total_events
