@@ -1,15 +1,30 @@
-Welcome to your new dbt project!
+ecommerce_analytics
 
-### Using the starter project
+An analytics engineering project built on Google's public thelook_ecommerce dataset (bigquery-public-data.thelook_ecommerce).
+[Placeholder for business question]
 
-Try running the following commands:
-- dbt run
-- dbt test
+dbt Core, BigQuery, GitHub
+
+### Project Architecture
+
+- staging
+- intermediate
+- marts
+- snapshot
 
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+### Technical Concepts
+
+#### dbt
+- Layered project architecture
+- Source definitions with freshness checks
+- Schema tests and column-level yml documentation
+- Incremental materialization with merge strategy and date partitioning
+- Custom Jinja macro with dynamic parameters and looping
+- dbt_utils package - surrogate key generate and date spine
+
+#### SQL
+- Window Functions
+- Running totals and cumulative aggregations
+- Date spine joins for cohort-style analysis
+- Star schema design
