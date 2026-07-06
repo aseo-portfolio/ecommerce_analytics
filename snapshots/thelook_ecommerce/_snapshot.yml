@@ -1,0 +1,25 @@
+version: 2
+
+snapshots:
+  - name: scd_users
+    description: >
+      SCD Type 2 history of user attribute changes. Each row represents one version of a user record.
+    columns:
+      - name: dbt_srid
+        description: Unique surrogate key for each snapshot record
+        test:
+          - not_null
+          - unique
+      - name: user_id
+        tests: 
+          - not_null
+      - name: dbt_valid_from
+        description: Timestamp of when this version of the record was active
+        tests:
+          - not_null
+      - name: dbt_valid_to
+        description: Timestamp of when this version expired. Null indicates current active record.
+      - name: dbt_updated_at
+        description: Timestamp when this snapshot record was last updated by dbt.
+        tests:
+          - not_null
