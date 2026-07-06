@@ -1,16 +1,25 @@
 ecommerce_analytics
 
-An analytics engineering project built on Google's public thelook_ecommerce dataset (bigquery-public-data.thelook_ecommerce).
+An analytics engineering project built on Google's public thelook_ecommerce dataset.
 [Placeholder for business question]
 
-dbt Core, BigQuery, GitHub
+Stack: dbt Core, BigQuery, GitHub
+[Placeholder for dbt docs]
 
-### Project Architecture
+### Table of Contents
 
-- staging
-- intermediate
-- marts
-- snapshot
+- [Data Architecture](#data-architecture)
+- [Technical Concepts](#technical-concepts)
+
+### Data Architecture
+
+| Model | Description |
+| --- | --- |
+| source | bigquery-public-data.thelook_ecommerce |
+| staging | One model per source table with minimal cleaning/renaming |
+| intermediate | Implements business logic, joins, window functions |
+| marts | Star schema with fact and dimension tables for BI analytics consumption |
+| snapshots | Snapshots of changes including user attribute |
 
 
 ### Technical Concepts
