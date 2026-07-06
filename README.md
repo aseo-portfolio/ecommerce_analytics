@@ -1,8 +1,6 @@
 # ecommerce_analytics
 
-An analytics engineering project built on Google's public thelook_ecommerce dataset.]
-
-[Placeholder for business question]
+An analytics engineering project built on Google's public thelook_ecommerce dataset.
 
 Stack: dbt Core, BigQuery, GitHub
 
@@ -33,9 +31,11 @@ Stack: dbt Core, BigQuery, GitHub
 - Incremental materialization with merge strategy and date partitioning
 - Custom Jinja macro with dynamic parameters and looping
 - dbt_utils package - surrogate key generate and date spine
+- Seed and Snapshot
 
 #### SQL
 - Window Functions
 - Running totals and cumulative aggregations
 - Date spine joins for cohort-style analysis
 - Star schema design
+- Qualify Function
